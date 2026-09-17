@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>
+    {{ "Editar proveedor" if proveedor else "Nuevo proveedor" }}
+</h2>
+
+<form method="post" class="formulario">
+
+    <label for="nombre">Nombre</label>
+    <input
+        id="nombre"
+        name="nombre"
+        type="text"
+        required
+        value="{{ proveedor.nombre if proveedor else '' }}"
+    >
+
+    <label for="nit">NIT</label>
+    <input
+        id="nit"
+        name="nit"
+        type="text"
+        value="{{ proveedor.nit if proveedor else '' }}"
+    >
+
+    <label for="telefono">Teléfono</label>
+    <input
+        id="telefono"
+        name="telefono"
+        type="tel"
+        value="{{ proveedor.telefono if proveedor else '' }}"
+    >
+
+    <label for="correo">Correo</label>
+    <input
+        id="correo"
+        name="correo"
+        type="email"
+        value="{{ proveedor.correo if proveedor else '' }}"
+    >
+
+    <label for="direccion">Dirección</label>
+    <input
+        id="direccion"
+        name="direccion"
+        type="text"
+        value="{{ proveedor.direccion if proveedor else '' }}"
+    >
+
+    <label class="chk">
+        <input
+            type="checkbox"
+            name="activo"
+            {{ "checked" if (not proveedor) or proveedor.activo else "" }}
+        >
+        Activo
+    </label>
+
+    <div class="form-acciones">
+
+        <button class="btn btn-primary" type="submit">
+            Guardar
+        </button>
+
+        <a class="btn" href="{{ url_for('index') }}">
+            Cancelar
+        </a>
+
+    </div>
+
+</form>
+
+{% endblock %}
